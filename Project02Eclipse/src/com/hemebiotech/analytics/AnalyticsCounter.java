@@ -1,3 +1,8 @@
+/** AUCUNE MODIFICATION SUR LE FICHIER POUR L'INSTANT
+ * SIMPLE AJOUT DES COMMENTAIRES
+ *
+ */
+
 package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
@@ -14,7 +19,13 @@ public class AnalyticsCounter {
 	private static int headacheCount = 0;
     private static int rashCount = 0;
 	private static int pupilCount = 0;
-	
+
+
+    /** METHODE MAIN TROP CHARGEE
+     * RETIRER LA BOUCLE WHILE DE LA METHODE PRINCIPALE ?
+     *
+     */
+
 	public static void main(String args[]) throws Exception {
 		// first get input
 		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
@@ -25,8 +36,13 @@ public class AnalyticsCounter {
          *  Pourquoi incrémenter i++ ?
          *  Cette boucle permet-elle de répertorier tous les symptômes ?
          */
+
+
+        /** int headCount = 0 ==> Inutile car cette variable est déjà déclarée avant
+         *
+         */
         
-		int i = 0;
+        int i = 0;
 		int headCount = 0;
 		while (line != null) {
 			i++;	// increment i
