@@ -4,18 +4,30 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+/** DECLARATION DES ATTRIBUTS
+ * Utiliser protected au lieu de private ?
+ * Déclarer simplement les variables sans initialiser à 0 ?
+ *
+ */
+
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
+	private static int headacheCount = 0;
+    private static int rashCount = 0;
+	private static int pupilCount = 0;
 	
 	public static void main(String args[]) throws Exception {
 		// first get input
 		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
 		String line = reader.readLine();
 
-		int i = 0;	// set i to 0
-		int headCount = 0;	// counts headaches
+        /** CALCUL DU NOMBRE D'OCCURRENCE DES SYMPTOMES
+         *  Boucles while qui permet de parcourir tout le fichier texte tant qu'il y a une ligne de symptôme à analyser
+         *  Pourquoi incrémenter i++ ?
+         *  Cette boucle permet-elle de répertorier tous les symptômes ?
+         */
+        
+		int i = 0;
+		int headCount = 0;
 		while (line != null) {
 			i++;	// increment i
 			System.out.println("symptom from file: " + line);
