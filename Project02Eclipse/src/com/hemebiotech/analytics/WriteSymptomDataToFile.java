@@ -23,7 +23,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter { // La classe imp
         }
 
         catch (IOException e) { // On attrape l'exception pour afficher un message d'erreur en retour
-            System.err.println("Erreur lors de l'écriture du fichier");
+            e.printStackTrace();
         }
 
     }
