@@ -5,27 +5,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
-public class WriteSymptomDataToFile implements ISymptomWriter { // La classe implémente la méthode de l'interface
+public class WriteSymptomDataToFile implements ISymptomWriter {
 
-    // Implémentation de la méthode en Override
     @Override
-    public void ISymptomWriter (Map<String, Integer> symptoms) {
+    public void writeSymptoms (Map<String, Integer> symptoms) {
 
-        // Déclaration du nom de fichier en String
+        // Déclaration du nom du fichier qui stockera les données
         String symptomsList = "result.out";
 
-        // Ecriture dans le fichier avec la gestion des exceptions en Try/Catch
+        // Déclaration de la Map qui stockera les données
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(symptomsList))) {
-            for (Map.Entry<String, Integer> entry : symptoms.entrySet()) { // Pour chaque entrée clé/valeur : générer une valeur associée
-                writer.write(entry.getKey() + " : " + entry.getValue()); // Récupérer la clé (getKey) et l'associer à une valeur (getValue)
-                writer.newLine(); // Retour à la ligne après chaque saisie clé/valeur
+            for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
+                writer.write(entry.getKey() + " : " + entry.getValue());
+                writer.newLine();
             }
         }
-
-        catch (IOException e) { // On attrape l'exception pour afficher un message d'erreur en retour
+        catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 }

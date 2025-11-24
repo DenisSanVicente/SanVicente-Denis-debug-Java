@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface ISymptomWriter {
 
-    // Déclaration de la méthode paramétrée qui sera implémentée par la classe
-    public void ISymptomWriter (Map<String, Integer> symptoms);
+    // Déclaration de la méthode writeSymptoms
+    public void writeSymptoms (Map<String, Integer> symptoms);
 }
