@@ -1,6 +1,9 @@
 package com.hemebiotech.analytics;
 
-import java.io.*;
+import javax.lang.model.util.AbstractAnnotationValueVisitor6;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,72 +14,53 @@ public class AnalyticsCounter {
     private static int rashCount = 0;		// initialize to 0
     private static int pupilCount = 0;		// initialize to 0
 
-    // 1. Attributs
+    /**
+     * Déclaration des deux attributs ISymptomReader et ISymptomWriter
+     */
     private ISymptomReader reader;
     private ISymptomWriter writer;
-    private String finalList;
 
-    // 1. Constructeur
+    /**
+     * Constructeur AnalyticsCoutner prenant en pamramètre les attributs déclarés précédemment
+     */
     public AnalyticsCounter (ISymptomReader reader, ISymptomWriter writer) {
         this.reader = reader;
         this.writer = writer;
     }
 
-    // 2. Méthode getSymptoms
-    @Override
-    public List<String> getSymptoms () { // Utilisation de l'instance de l'interface ISymptomReader
-        this.reader.GetSymptoms(); // Lecture du fichier et alimentation de getSymptoms
-        return getSymptoms(); // Retour de getSymptoms
+    /** Création de la méthode getSymptoms
+     * Cette méthode utilise l'instance de ISymptomReader et retourne la liste getSymptoms
+     * */
+    public List<String> getSymptoms() {
+        return reader.getSymptoms();
     }
 
-    // 3. Méthode countSymptoms
-    public Map<String, Integer> countSymptoms (List<String> symptoms) {
-        Map<String, Integer> count = new HashMap<>(); // Déclaration de la HashMap où seront stockées les données
 
-        for (String symptom : symptoms) { // Pour chaque symptômes dans la liste des symptômes
-            int oldValue = count.get(symptom); // Déclaration d'une variable pour la gestion des doublons
+    /** Méthode countSymptoms */
+    public Map<String, Integer> countSymptoms(List<String> symptoms) {
+        Map<String, Integer> count = new HashMap<>(); // Création de la Map qui va stocker les données
 
-            if (count.containsKey(symptom)) { // Si le symptôme a déjà été listé
-                count.put(symptom, oldValue + 1); // On incrémente la quantité qui lui a déjà été attribué
-            }
-
-            else {
-                count.put(symptom, 1); // Sinon on ajoute le nom du symptôme avec la valeur de 1
-            }
+        for (String symptom : symptoms) { // Pour chaque symptômes identifié dans la liste des symptômes
+            count.put(symptom, count.getOrDefault(symptom, 0) + 1); // Si le symptôme exsite déjà, on incrémente, sinon on crée le sypmtôme dans la liste
         }
-
-        return count; // On retourne la Map count
+        return count; // On retourne la Map renseignée
     }
 
-    // 4. Méthode sortSymptoms
+    /** Méthode sortSymptoms */
     public Map<String, Integer> sortSymptoms (Map<String, Integer> symptoms) {
-
-        // Déclaration de la Map triée (TreeMap)
-        TreeMap<String, Integer> sorted = new TreeMap<>();
-
-        // On ajoute dans la nouvelle Map la liste des symptômes
-        sorted.putAll(symptoms);
-
-        // On renvoie la TreeMap
-        return sorted;
+        Map<String, Integer> sort = new TreeMap<>(); // Création d'une TreeMap qui organise les symptômes par ordre alphabétique
+        sort.putAll(symptoms); // On ajoute tous les symptômes de la Map
+        return sort; // On renvoie la Map remplie
     }
 
-    /** 5. Méthode writeSymptoms
-     *
+    /** Méthode write Symptoms */
     public void writeSymptoms (Map<String, Integer> symptoms) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("result.out"))) {
-            for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
-                writer.write(entry.getKey() + " : " + entry.getValue());
-                writer.newLine();
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.writer.writeSymptoms(symptoms);
     }
-     */
 
 
+
+    
     public static void main(String args[]) throws Exception {
         // first get input
         BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));

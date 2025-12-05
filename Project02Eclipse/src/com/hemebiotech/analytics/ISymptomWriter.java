@@ -4,6 +4,9 @@ import java.util.Map;
 
 public interface ISymptomWriter {
 
-    // Déclaration de la méthode writeSymptoms
-    public void writeSymptoms (Map<String, Integer> symptoms);
-}
+    /** Déclaration de la méthode writeSymptoms
+     * Cette méthode sera instanciée par la classe WriteSymptomDataToFile
+     */
+        public void writeSymptoms (Map<String, Integer> symptoms);
+
+     }
