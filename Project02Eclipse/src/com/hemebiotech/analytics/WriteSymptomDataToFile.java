@@ -10,16 +10,17 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 
     private String filepath;
 
-    /** Constructeur writeSymptomDataToFile prenant en paramètre un élément de type String nommé filepath */
     public WriteSymptomDataToFile(String filepath) {
         this.filepath = filepath;
     }
 
-
-    /** Instanciation de la méthode writeSymptoms déclarée dans l'interface ISymptomWriter
-     *  Gestion de l'exception avec try/catch */
     @Override
     public void writeSymptoms (Map<String, Integer> symptoms) {
+        /** Instanciation de la méthode writeSymptoms déclarée dans l'interface ISymptomWriter
+         *  Ecriture des symptômes et de leurs quantités
+         *  @exception erreur d'écriture dans le fichier grâce à try/catch qui sera remplacée par un message d'erreur
+         */
+
         String filepath = "result.out";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) { // On essaie d'écrire dans le fichier crée
