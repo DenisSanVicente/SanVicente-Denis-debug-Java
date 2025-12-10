@@ -15,12 +15,13 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
         this.filepath = filepath;
     }
 
+    /** Méthode qui lit tous les symptômes du fichier en gérant les exceptions
+     *  @exception try/catch pour éviter les erreurs de lecture du fichier
+     *  @return la liste des symptômes lus dans le fichier
+     */
     @Override
     public List<String> getSymptoms() {
-        /** Lire tous les symptômes du fichier en gérant les exceptions
-         *  @exception try/catch pour éviter les erreurs de lecture du fichier
-         *  @return la liste des symptômes lus dans le fichier
-         */
+
         ArrayList<String> result = new ArrayList<String>();
 
         if (filepath != null) {

@@ -14,12 +14,13 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
         this.filepath = filepath;
     }
 
+    /** Instanciation de la méthode writeSymptoms déclarée dans l'interface ISymptomWriter
+     *  Ecriture des symptômes et de leurs quantités
+     *  @exception IOException si un problème d'écriture survient
+     */
     @Override
     public void writeSymptoms (Map<String, Integer> symptoms) {
-        /** Instanciation de la méthode writeSymptoms déclarée dans l'interface ISymptomWriter
-         *  Ecriture des symptômes et de leurs quantités
-         *  @exception erreur d'écriture dans le fichier grâce à try/catch qui sera remplacée par un message d'erreur
-         */
+
 
         String filepath = "result.out";
 
